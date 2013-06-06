@@ -1,0 +1,57 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-06-06 15:06-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: settings.py:66
+msgid "French"
+msgstr "Français"
+
+#: settings.py:67
+msgid "English"
+msgstr "Anglais"
+
+#: settings.py:68
+msgid "German"
+msgstr "Allemand"
+
+#: urls.py:10
+msgid "^home/"
+msgstr "^accueil/"
+
+#: urls.py:17
+msgid "^en/"
+msgstr "^fr/"
+
+#: templates/home.html:7
+msgid "Welcome to django-i18nurl demo!"
+msgstr "Bienvenue dans la demo de django-i18nurl !"
+
+#: templates/home.html:8
+msgid ""
+"Here are some demo links. Browse the code to see how they are implemented"
+msgstr ""
+"Voici quelques liens de démo, naviguez dans le code pour regarder comment ça fonctionne."
+
+#: templates/home.html:10
+msgid "Using current_i18nurl"
+msgstr "En utilisant {% current_i18nurl %}"
+
+#: templates/home.html:17
+msgid "Using i18nurl"
+msgstr "En utilisant {% i18nurl %}"
