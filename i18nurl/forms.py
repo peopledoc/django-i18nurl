@@ -1,3 +1,4 @@
+from urlparse import urljoin
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 from i18nurl import settings
@@ -9,7 +10,7 @@ class LanguageSelectionForm(forms.Form):
         label=_('language'),
         choices=settings.I18N_LANGUAGES,
     )
-    next = forms.URLField(
+    next = forms.CharField(
         label=_('next'),
         required=False,
         widget=forms.HiddenInput,
