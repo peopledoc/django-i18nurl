@@ -23,6 +23,7 @@ class URLNode(Node):
                        for k, v in self.kwargs.items()])
 
         view_name = self.view_name.resolve(context)
+        language = self.language.resolve(context)
 
         if not view_name:
             raise NoReverseMatch(
@@ -35,7 +36,7 @@ class URLNode(Node):
         # {% url ... as var %} construct in which case return nothing.
         url = ''
         try:
-            url = reverse_i18n(view_name, self.language,
+            url = reverse_i18n(view_name, language,
                                args=args, kwargs=kwargs,
                                current_app=context.current_app)
         except NoReverseMatch as e:
@@ -43,7 +44,7 @@ class URLNode(Node):
                 project_name = settings.SETTINGS_MODULE.split('.')[0]
                 try:
                     url = reverse_i18n(project_name + '.' + view_name,
-                                       self.language,
+                                       language,
                                        args=args, kwargs=kwargs,
                                        current_app=context.current_app)
                 except NoReverseMatch:
@@ -87,9 +88,7 @@ def i18nurl(parser, token):
                     "changed in Django 1.5, see the docs."),
         raise
 
-    language = str(parser.compile_filter(bits[2]))
-    if language[0] == language[-1] and language[0] in ('"', "'"):
-        language = language[1:-1]
+    language = parser.compile_filter(bits[2])
 
     args = []
     kwargs = {}
@@ -124,6 +123,8 @@ class CurrentURLNode(Node):
         url_name = resolver_match.url_name
         args = resolver_match.args
         kwargs = resolver_match.kwargs
+ 
+        language = self.language.resolve(context)
 
         if app_name:
             view_name = '{app_name}:{url_name}'.format(app_name=app_name,
@@ -137,7 +138,7 @@ class CurrentURLNode(Node):
         # {% url ... as var %} construct in which case return nothing.
         url = ''
         try:
-            url = reverse_i18n(view_name, self.language,
+            url = reverse_i18n(view_name, language,
                                args=args, kwargs=kwargs,
                                current_app=context.current_app)
         except NoReverseMatch as e:
@@ -145,7 +146,7 @@ class CurrentURLNode(Node):
                 project_name = settings.SETTINGS_MODULE.split('.')[0]
                 try:
                     url = reverse_i18n(project_name + '.' + view_name,
-                                       self.language,
+                                       language,
                                        args=args, kwargs=kwargs,
                                        current_app=context.current_app)
                 except NoReverseMatch:
@@ -180,9 +181,7 @@ def current_i18nurl(parser, token):
     if len(bits) < 2:
         raise TemplateSyntaxError("'%s' takes one argument"
                                   " (language)" % bits[0])
-    language = str(parser.compile_filter(bits[1]))
-    if language[0] == language[-1] and language[0] in ('"', "'"):
-        language = language[1:-1]
+    language = parser.compile_filter(bits[1])
 
     bits = bits[3:]
     if len(bits) >= 2 and bits[-2] == 'as':
