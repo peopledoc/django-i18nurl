@@ -1,0 +1,20 @@
+{% extends "i18n/base.html" %}
+{% load staticfiles i18n %}
+
+
+<!-- Meta. -->
+{% block head_title %}{% trans "Language selection" %}{% endblock %}
+{% block body_id %}set_language{% endblock %}
+{% block title %}{% trans "Language selection" %}{% endblock %}
+{% block baseline %}{% trans "Choose your preferred language." %}{% endblock %}
+
+<!-- Content. -->
+{% block content %}
+    <form id="set_language_form" action="." method="post" class="form-horizontal">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <p>
+            <input id="set_language_form_submit" type="submit" class="btn btn-primary" />
+        </p>
+    </form>
+{% endblock %}

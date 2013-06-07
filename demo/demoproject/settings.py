@@ -99,7 +99,7 @@ NOSE_ARGS = ['--verbose',
              '--xunit-file=%s' % join(data_dir, 'test', 'nosetests.xml'),
              '--with-coverage',
              '--cover-erase',
-             '--cover-package=django_downloadview',
+             '--cover-package=demoproject,i18nurl',
              '--no-path-adjustment',
              '--all-modules',
              ]
