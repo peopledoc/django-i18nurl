@@ -1,4 +1,4 @@
-recursive-include i18n_url *
+recursive-include i18nurl *
 global-exclude *.pyc
 include *.txt
 include VERSION README.rst CHANGELOG LICENSE INSTALL AUTHORS
