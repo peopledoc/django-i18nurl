@@ -6,7 +6,7 @@ Django i18n url lets you manage your multilingual url using Django.
 You can change the language and stay on the same page.
 
 * Authors: Rémy Hubscher and `contributors
-  <https://github.com/novagile/django-mail-factory/graphs/contributors>`_
+  <https://github.com/novagile/django-i18nurl/graphs/contributors>`_
 * Licence: BSD
 * Compatibility: Django 1.5+, python2.7 up to python3.3
 * Project URL: https://github.com/novagile/django-i18nurl
