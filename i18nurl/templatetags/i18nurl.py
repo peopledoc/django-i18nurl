@@ -118,12 +118,15 @@ class CurrentURLNode(Node):
         self.asvar = asvar
 
     def render(self, context):
-        resolver_match = context['request'].resolver_match
+        try:
+            resolver_match = context['request'].resolver_match
+        except AttributeError:
+            return ''
         app_name = resolver_match.app_name
         url_name = resolver_match.url_name
         args = resolver_match.args
         kwargs = resolver_match.kwargs
- 
+
         language = self.language.resolve(context)
 
         if app_name:
