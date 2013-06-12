@@ -8,7 +8,10 @@ def reverse_i18n(url, language, *args, **kwargs):
     cur_language = translation.get_language()
     try:
         translation.activate(language)
-        url = reverse(url, *args, **kwargs)
+        try:
+            url = reverse(url, *args, **kwargs)
+        except:
+            url = reverse(url)
     finally:
         translation.activate(cur_language)
     return url
