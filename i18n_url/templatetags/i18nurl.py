@@ -119,7 +119,10 @@ class CurrentURLNode(Node):
         self.language = language
 
     def render(self, context):
-        resolver_match = context['request'].resolver_match
+        try:
+            resolver_match = context['request'].resolver_match
+        except AttributeError:
+            return ''
         app_name = resolver_match.app_name
         url_name = resolver_match.url_name
         args = resolver_match.args
