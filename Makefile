@@ -10,3 +10,6 @@ test: bin/python
 
 clean:
 	rm -rf bin .tox include/ lib/ man/ django_i18nurl.egg-info/ build/
+
+docs:
+	(cd docs; make html)

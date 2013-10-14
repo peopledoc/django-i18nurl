@@ -1,0 +1,9 @@
+############################
+About django-i18nurl
+############################
+
+.. toctree::
+
+   license
+   authors
+   changelog
