@@ -2,6 +2,7 @@
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
+from django.utils.http import is_safe_url
 from django.utils.translation import override
 from django.views.generic import FormView, RedirectView
 
@@ -40,6 +41,9 @@ class SetLanguageView(FormView):
         language_code = form.cleaned_data['language']
         redirect_url = form.cleaned_data['next']
         remember = not form.cleaned_data['temporary']
+        # Ensure the user-originating redirection url is safe.
+        if not is_safe_url(url=redirect_url, host=self.request.get_host()):
+            redirect_url = None
         if not redirect_url:
             with override(language_code):
                 redirect_url = reverse(I18N_REDIRECT_URL_NAME)

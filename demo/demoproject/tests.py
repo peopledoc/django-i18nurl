@@ -5,11 +5,11 @@ from django.utils import translation
 from django.utils.importlib import import_module
 from django.test import TestCase
 
-from i18nurl.settings import I18N_REDIRECT_URL_NAME, I18N_LANGUAGES
+from i18nurl.settings import I18N_REDIRECT_URL_NAME
 
 
 class I18nTestCase(TestCase):
-    """Base class for posbox.i18n tests classes."""
+    """Base class for i18nurl tests classes."""
     def setUp(self):
         """Common setup for all test methods:
 
@@ -173,6 +173,13 @@ class SetLanguageTestCase(I18nTestCase):
         """Called with language argument, set_language view redirects to the
         website with specified language activated."""
         data = {'language': self.other_language}
+        response = self.client.post(self.set_language_url, data, follow=True)
+        self.assertI18nRedirection(response, self.other_redirect_url)
+
+    def test_unsafe_redirection(self):
+        "set_language redirects to default URL if user provides external URL."
+        data = {'language': self.other_language,
+                'next': 'http://example.com'}
         response = self.client.post(self.set_language_url, data, follow=True)
         self.assertI18nRedirection(response, self.other_redirect_url)
 
