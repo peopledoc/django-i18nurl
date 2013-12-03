@@ -1,4 +1,3 @@
-from urlparse import urljoin
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 from i18nurl import settings
